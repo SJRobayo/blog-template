@@ -151,4 +151,8 @@ class PostEditor extends Component
 
     return redirect()->route('dashboard')->with('message', 'Post deleted successfully');
     }
+
+    public function cancel(){
+        return redirect()->route('user.posts');
+    }
 }

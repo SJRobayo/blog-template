@@ -109,9 +109,19 @@
                 </div>
 
                 <div class="mt-6 flex items-center justify-end gap-x-6">
-                    <button type="button" class="text-sm/6 font-semibold text-gray-900">Cancel</button>
-                    <button type="button" wire:click="save()"
-                        class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+                    <form>
+                        <button type="submit" wire:click="cancel()"
+                            class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                            Cancel
+                        </button>
+                    </form>
+                    <form >
+                        <button wire:click="save()"
+                            class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
+                            Save
+                        </button>
+                    </form>
+
                 </div>
             </form>
 

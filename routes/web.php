@@ -28,6 +28,7 @@ Route::prefix('/post')->group(function () {
     Route::get('/edit/{id}', PostEditor::class)->name('post.edit');
     Route::delete('/delete/{id}', action: [PostEditor::class, 'deletePost'])->name('post.delete');
     Route::get('visualize/{id}', PostVisualizer::class)->name('post.visualize');
+    Route::Get('reply/{id}', [PostVisualizer::class, 'replyComment'])->name('post.reply');
 
 });
 require __DIR__ . '/auth.php';

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Comment;
 use Livewire\Component;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
@@ -11,10 +12,15 @@ class PostVisualizer extends Component
     public $comment;
     public Post $post;
     public $userId;
+    public $commentId;
+
+    public $commentReplies = false;
     protected $fillable = ['body', 'user_id', 'commentable_id', 'commentable_type', 'parent_id'];
 
+    public $reply;
     protected $rules = [
-        'comment' => 'required|min:3'
+        'comment' => 'required|min:3',
+
     ];
 
     protected $messages = [
@@ -25,7 +31,6 @@ class PostVisualizer extends Component
     public function mount($id)
     {
         $this->userId = Auth::id();
-        $this->post = Post::findOrFail($id); // Usar findOrFail para manejo seguro
     }
 
     public function render()
@@ -47,5 +52,47 @@ class PostVisualizer extends Component
         $this->reset('comment');
         session()->flash('message', 'Comentario creado exitosamente.');
         return redirect()->route('post.visualize', ['id' => $this->post->id]);
+    }
+    public function replyComment($id)
+    {
+        try {
+
+            $this->validate([
+                'reply' => 'required|string|max:1000',
+            ]);
+
+            $this->commentId = $id;
+
+
+            Comment::create([
+                'body' => $this->reply,
+                'user_id' => Auth::id(),
+                'commentable_id' => $this->commentId,
+                'commentable_type' => Comment::class,
+                'parent_id' => $this->commentId,
+            ]);
+
+
+            $this->reset('comment');
+
+            session()->flash('message', 'Respuesta creada exitosamente.');
+
+            return redirect()->route('post.visualize', ['id' => $this->post->id]);
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+
+
+
+
+    public function showReplies()
+    {
+        $this->commentReplies = !$this->commentReplies;
+    }
+
+    public function nothing()
+    {
+        dd(1);
     }
 }
