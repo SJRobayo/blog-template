@@ -14,7 +14,7 @@ class PostVisualizer extends Component
     public $userId;
     public $commentId;
 
-    public $commentReplies = false;
+    public $commentReplies = [];
     protected $fillable = ['body', 'user_id', 'commentable_id', 'commentable_type', 'parent_id'];
 
     public $reply;
@@ -31,6 +31,7 @@ class PostVisualizer extends Component
     public function mount($id)
     {
         $this->userId = Auth::id();
+        $this->post = Post::find($id);
     }
 
     public function render()
@@ -86,10 +87,14 @@ class PostVisualizer extends Component
 
 
 
-    public function showReplies()
-    {
-        $this->commentReplies = !$this->commentReplies;
+    public function showReplies($commentId)
+{
+    if (isset($this->commentReplies[$commentId])) {
+        $this->commentReplies[$commentId] = !$this->commentReplies[$commentId];
+    } else {
+        $this->commentReplies[$commentId] = true;
     }
+}
 
     public function nothing()
     {
