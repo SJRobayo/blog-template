@@ -11,7 +11,7 @@ class HomePage extends Component
 
     public $posts;
     public function mount(){
-        $this->posts = Post::where('id', '!=', Auth::id())->get();
+        $this->posts = Post::all();
     }
     public function render()
     {

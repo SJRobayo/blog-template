@@ -67,6 +67,7 @@ class PostEditor extends Component
 
     public function save()
     {
+        
        $this->validation();
 
     }

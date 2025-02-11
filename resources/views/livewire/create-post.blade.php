@@ -7,7 +7,7 @@
 
     <div class="py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-6">
-            <form>
+            <form wire:submit.prevent="save">
                 <div class="space-y-12">
                     <div class="border-b border-gray-900/10 pb-12">
                         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -27,7 +27,7 @@
                                                 placeholder="Your title">
                                         </div>
                                         @error('title')
-                                            <p class="text-red-500 text-xs">{{ $message }}</p>
+                                            <p class="text-red-500 text-m">{{ $message }}</p>
                                         @enderror
                                     </div>
 
@@ -72,7 +72,7 @@
                                     <textarea id="about" name="about" rows="3" wire:model="content"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"></textarea>
                                     @error('content')
-                                        {{ $message }}
+                                        <p class="text-red-500 text-m">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <p class="mt-3 text-sm/6 text-gray-600">Write here your content!</p>
@@ -110,13 +110,13 @@
 
                 <div class="mt-6 flex items-center justify-end gap-x-6">
                     <form>
-                        <button type="submit" wire:click="cancel()"
+                        <button type=button" wire:click="cancel()"
                             class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
                             Cancel
                         </button>
                     </form>
-                    <form >
-                        <button wire:click="save()"
+                    <form>
+                        <button type="button" wire:click="save()"
                             class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
                             Save
                         </button>
