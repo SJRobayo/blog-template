@@ -141,21 +141,12 @@
                                                         stroke="black" stroke-width="1.6" stroke-linecap="round" />
                                                 </svg>
 
-                                                <h5 class="text-gray-900 text-sm font-normal leading-snug">2 Replies
+                                                <h5 class="text-gray-900 text-sm font-normal leading-snug">
+                                                    {{ $comment->replies->count() }} Replies
+
                                                 </h5>
                                             </button>
 
-                                        </div>
-                                        <div class="justify-start items-center gap-1.5 flex">
-                                            <a href="">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M16 14C16 15.6569 14 17 12 17C10 17 8 15.6569 8 14M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12ZM10 9C10 9.55228 9.55228 10 9 10C8.44772 10 8 9.55228 8 9C8 8.44772 8.44772 8 9 8C9.55228 8 10 8.44772 10 9ZM16 9C16 9.55228 15.5523 10 15 10C14.4477 10 14 9.55228 14 9C14 8.44772 14.4477 8 15 8C15.5523 8 16 8.44772 16 9Z"
-                                                        stroke="#111827" stroke-width="1.6" stroke-linecap="round" />
-                                                </svg>
-                                            </a>
-                                            <h5 class="text-gray-900 text-sm font-normal leading-snug">Reactions</h5>
                                         </div>
                                     </div>
                                     <div class="justify-end items-center gap-1 flex">
@@ -202,16 +193,16 @@
                                                                 class="flex-col justify-start items-start gap-1 inline-flex">
                                                                 <h5
                                                                     class="text-gray-900 text-sm font-semibold leading-snug">
-                                                                    {{$reply->user->name}}</h5>
+                                                                    {{ $reply->user->name }}</h5>
                                                                 <h6
                                                                     class="text-gray-500 text-xs font-normal leading-5">
-                                                                    +{{$reply->created_at}}</h6>
+                                                                    +{{ $reply->created_at }}</h6>
                                                             </div>
                                                         </div>
 
                                                     </div>
                                                     <p class="text-gray-800 text-sm font-normal leading-snug">
-                                                       {{$reply->body}}</p>
+                                                        {{ $reply->body }}</p>
                                                 </div>
                                             </div>
                                         </div>
